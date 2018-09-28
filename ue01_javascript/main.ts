@@ -1,7 +1,11 @@
 console.log('Hallo, guten Morgen');
+
 var jahr = 2018;
-var monat = 'September';
-var datum;
+let monat = 'September';
+let datum : string;
+
 datum = monat;
+
 console.log(monat + ' ' + jahr);
 console.log(monat);
+
