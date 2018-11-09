@@ -20,4 +20,15 @@ export class Person {
     public get geburtsjahr(): number {
         return this._geburtsjahr;
     }
+
+    public set vorname (v: string) {
+        if (v === undefined || v === null || v === '') {
+            throw Error ('invalid value');
+        }
+        this._vorname = v;
+    }
+
+    public toString(): string {
+        return this._nachname + this._vorname;
+    }
 }
