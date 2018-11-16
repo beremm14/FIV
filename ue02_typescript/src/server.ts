@@ -10,8 +10,14 @@ private _port: number;
 private _server: express.Express;
 
     constructor (port: number) {
+const assetsPath = path.join(__dirname, '..', 'assets');
+
         this._port = port;
         this._server = express();
+
+        // Alle Dateien im assets-Ordner verwenden
+        this._server.use('/', express.static(assetsPath));
+
         this._server.get('/liste',
             (req, res, next) => this.handleGetListe(req, res, next)
         );
