@@ -5,7 +5,6 @@ import * as path from 'path';
 import * as express from 'express';
 import * as bodyParser from 'body-parser';
 
-
 export class Server {
 private _port: number;
 private _server: express.Express;
@@ -15,6 +14,11 @@ const assetsPath = path.join(__dirname, '..', 'assets');
 
         this._port = port;
         this._server = express();
+
+        // Express soll mit pug arbeiten
+        this._server.set('views', path.join(__dirname, '..', 'views'));
+        const engine = this._server.set('view engine', 'pug');
+        engine.locals.pretty = true;
 
         // Alle Dateien im assets-Ordner verwenden
         this._server.use('/', express.static(assetsPath));
@@ -47,8 +51,11 @@ const assetsPath = path.join(__dirname, '..', 'assets');
     }
 
     private handlePostLogin (req: express.Request, res: express.Response, next: express.NextFunction) {
-        debugger;
-        next();
+        if (req.body.email === 'test@test.at' && req.body.password === 'geheim') {
+            res.render('welcome.pug', {anrede: 'Herr', name: 'Rossi'});
+        } else {
+            res.status(404).send('404 NOT AUTHORIZED');
+        }
     }
 
 }
