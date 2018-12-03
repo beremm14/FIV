@@ -17,6 +17,12 @@
             "sourceMaps": true,
             "preLaunchTask": "build",
             "smartStep": true
+        },
+        {
+            "type": "node",
+            "request": "attach",
+            "name": "Attach",
+            "port": 9229
         }
     ]
 }
