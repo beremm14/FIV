@@ -31,6 +31,9 @@ const assetsPath = path.join(__dirname, '..', 'assets');
         this._server.get('/liste',
             (req, res, next) => this.handleGetListe(req, res, next)
         );
+        this._server.get('/welcome',
+            (req, res, next) => this.handleGetWelcome(req, res, next)
+        );
     }
 
     public start () {
@@ -52,10 +55,14 @@ const assetsPath = path.join(__dirname, '..', 'assets');
 
     private handlePostLogin (req: express.Request, res: express.Response, next: express.NextFunction) {
         if (req.body.email === 'test@test.at' && req.body.password === 'geheim') {
-            res.render('welcome.pug', {anrede: 'Herr', name: 'Rossi'});
+            res.redirect('/welcome');
         } else {
             res.status(404).send('404 NOT AUTHORIZED');
         }
+    }
+
+    private handleGetWelcome (req: express.Request, res: express.Response, next: express.NextFunction) {
+        res.render('welcome.pug', {anrede: 'Herr', name: 'Rossi'});
     }
 
 }
