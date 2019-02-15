@@ -3,4 +3,17 @@
     <p>
         <app-clock></app-clock>
     </p>
+    <div>
+        <div style="display: block">
+          <canvas baseChart
+                  [datasets]="barChartData"
+                  [labels]="barChartLabels"
+                  [options]="barChartOptions"
+                  [legend]="barChartLegend"
+                  [chartType]="barChartType"
+                  (chartHover)="chartHovered($event)"
+                  (chartClick)="chartClicked($event)"></canvas>
+        </div>
+        <button (click)="randomize2()">Update</button>
+      </div>
 </div>
